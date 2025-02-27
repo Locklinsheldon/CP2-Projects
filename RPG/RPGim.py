@@ -1,54 +1,4 @@
-import random
-
-print("\nWelcome to the Random Password Generator")
-
-def ranChar(): 
-    length = int(input("\nHow long does your password need to be?: "))
-    
-    upper = input("\nDo you need upper case letters in your password?(y/n): ")
-    if upper == "y":
-        upperTrue = True
-    elif upper == "n":
-        upperTrue = False
-    else:
-        print("That's not an option")
-        return
-    
-    special = input("\nDo you need special characters in your password?(y/n): ")
-    if special == "y":
-        specTrue = True
-    elif special == "n":
-        specTrue = False
-    else:
-        print("That's not an option")
-        return
-
-    numbers = input("\nDo you need numbers in your password?(y/n): ")
-    if numbers == "y":
-        numTrue = True
-    elif numbers == "n":
-        numTrue = False
-    else:
-        print("That's not an option")
-        return
-    
-    print("Here are a few passwords you can use:")
-
-    password1 = []
-    password2 = []
-    password3 = []
-    password4 = []
-    lowLet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    upLet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    specLet = ["!", "@", "#", "$", "%", "&"]
-    nummerz = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]    
-    rc = 0
-    runCount = rc
-    fourTrue = False
-    threeTrue = False
-    twoTrue = False
-    oneTrue = False
-
+def ext():
     while runCount < length:    
         char1one = random.choice(lowLet)
         if upperTrue:
@@ -217,5 +167,3 @@ def ranChar():
                     print("".join(password2))
                     print("".join(password3))
                     print("".join(password4))
-
-ranChar()
