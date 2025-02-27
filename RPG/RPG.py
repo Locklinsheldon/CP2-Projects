@@ -51,11 +51,11 @@ def ranChar():
 
     while runCount < length:    
         char1one = random.choice(lowLet)
-        if upperTrue:
+        if upperTrue == True:
             char2one = random.choice(upLet)
-        if specTrue:
+        if specTrue == True:
             char3one = random.choice(specLet)
-        if numTrue:
+        if numTrue == True:
             char4one = random.choice(nummerz)
         
         if upperTrue and specTrue and numTrue:
@@ -79,11 +79,11 @@ def ranChar():
             oneTrue = True
 
         char1two = random.choice(lowLet)
-        if upperTrue:
+        if upperTrue == True:
             char2two = random.choice(upLet)
-        if specTrue:
+        if specTrue == True:
             char3two = random.choice(specLet)
-        if numTrue:
+        if numTrue == True:
             char4two = random.choice(nummerz)
         
         if upperTrue and specTrue and numTrue:
@@ -107,11 +107,11 @@ def ranChar():
             oneTrue = True
 
         char1three = random.choice(lowLet)
-        if upperTrue:
+        if upperTrue == True:
             char2three = random.choice(upLet)
-        if specTrue:
+        if specTrue == True:
             char3three = random.choice(specLet)
-        if numTrue:
+        if numTrue == True:
             char4three = random.choice(nummerz)
         
         if upperTrue and specTrue and numTrue:
@@ -135,11 +135,11 @@ def ranChar():
             oneTrue = True
 
         char1four = random.choice(lowLet)
-        if upperTrue:
+        if upperTrue == True:
             char2four = random.choice(upLet)
-        if specTrue:
+        if specTrue == True:
             char3four = random.choice(specLet)
-        if numTrue:
+        if numTrue == True:
             char4four = random.choice(nummerz)
         
         if upperTrue and specTrue and numTrue:
