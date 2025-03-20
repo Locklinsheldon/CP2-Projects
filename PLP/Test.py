@@ -1,12 +1,24 @@
-def get_dictionary_input():
-    """Gets dictionary input from the user."""
-    my_dict = {}
-    key = input("Enter key: ")
-    value = input("Enter value: ")
-    my_dict[key] = value
-    return my_dict
+libr = set()
+add = True
+print("Add items to your library")
+
+
+while add == True:
+    def get_dictionary_input():
+        my_dict = {}
+        name = input("Enter name: ")
+        author = input("Enter author: ")
+        my_dict[name] = author
+        return my_dict
+
+get_dictionary_input()
 
 user_dict = get_dictionary_input()
-print("The dictionary is:", user_dict)
 
-#ADD A DICT
+libr = libr.union(user_dict.items())
+isadd = input("Add another item?(y/n): ")
+if isadd == "n":
+    add = False
+elif isadd == "y":
+    print("Add an item")
+print(libr)
