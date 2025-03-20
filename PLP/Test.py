@@ -11,14 +11,15 @@ while add == True:
         my_dict[name] = author
         return my_dict
 
-get_dictionary_input()
+    get_dictionary_input()
+    user_dict = get_dictionary_input()
+    libr = libr.union(user_dict.items())
 
-user_dict = get_dictionary_input()
-
-libr = libr.union(user_dict.items())
-isadd = input("Add another item?(y/n): ")
-if isadd == "n":
-    add = False
-elif isadd == "y":
-    print("Add an item")
+    isadd = input("Add another item?(y/n): ")
+    if isadd == "n":
+        add = False
+    elif isadd == "y":
+        print("Add an item")
+    else:
+        add = False
 print(libr)
