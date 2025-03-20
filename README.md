@@ -15,6 +15,7 @@ Paragraph describing how to use the project.
 
 ## Used Technologies
 ---
+
 + First library in the repository
 `pip install code for the library`
 + Second library in the repository

@@ -1,5 +1,24 @@
 libr = set()#Library
 
+
+
+
+
+def addNew():#Function for adding new items
+    newItem = input("\nWhat would you like to add to your personal library?: ")#Asks what item
+    if newItem in libr:#Checks if item is in library
+        print("\nSorry, this item is already in your library.")
+    else:
+        libr.add(newItem)#Adds item to library
+        print("\nUpdated library:", libr)#Prints updated library
+
+
+
+
+
+
+
+
 def addNew():#Function for adding new items
     newItem = input("\nWhat would you like to add to your personal library?: ")#Asks what item
     if newItem in libr:#Checks if item is in library
