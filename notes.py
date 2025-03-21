@@ -27,7 +27,7 @@ def add(a):
         print(a+b)
     additon()
 
-add(3)
+#add(3)
 
 #4. What is the scope of a variable in a function WITH an inner function?
     #Variable in functionbecomes local to the inner function

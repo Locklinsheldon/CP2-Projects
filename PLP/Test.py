@@ -10,11 +10,10 @@ while add == True:
         author = input("Enter author: ")
         my_dict[name] = author
         return my_dict
-
-    get_dictionary_input()
     user_dict = get_dictionary_input()
     libr = libr.union(user_dict.items())
-
+    
+    print(libr)
     isadd = input("Add another item?(y/n): ")
     if isadd == "n":
         add = False
