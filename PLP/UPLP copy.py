@@ -1,12 +1,31 @@
 libr = set()#Library
+def makefalse():
 
-def addNew():#Function for adding new items
-    newItem = input("\nWhat would you like to add to your personal library?: ")#Asks what item
-    if newItem in libr:#Checks if item is in library
-        print("\nSorry, this item is already in your library.")
+add = False
+
+
+
+if add == True:
+    while add == True:
+        def getDictionaryInput():
+            my_dict = {}
+            name = input("Enter name: ")
+            author = input("Enter author: ")
+            my_dict[name] = author
+            return my_dict
+        user_dict = getDictionaryInput()
+        libr = libr.union(user_dict.items())
+    
+    print(libr)
+    isadd = input("Add another item?(y/n): ")
+    if isadd == "n":
+        add = False
+    elif isadd == "y":
+        print("Add an item")
     else:
-        libr.add(newItem)#Adds item to library
-        print("\nUpdated library:", libr)#Prints updated library
+        add = False
+    print(libr)
+    print("\nUpdated library:", libr)#Prints updated library
 
 
 def search():#Function for checking if an item is in the library
@@ -52,7 +71,7 @@ def main():#Menu for the user to select what they would like to do
         
         action = input("\nWhat would you like to do?: ")
         if action == "1":
-            addNew()
+            makefalse()
 
         elif action == "2":
             search()
