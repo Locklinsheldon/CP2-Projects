@@ -1,6 +1,4 @@
 libr = set()#Library
-def makefalse():
-
 add = False
 
 
@@ -71,7 +69,7 @@ def main():#Menu for the user to select what they would like to do
         
         action = input("\nWhat would you like to do?: ")
         if action == "1":
-            makefalse()
+            getDictionaryInput()
 
         elif action == "2":
             search()
