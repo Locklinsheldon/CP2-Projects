@@ -4,26 +4,16 @@ print("Add items to your library")
 
 
 
-def get_dictionary_input():
-    while add == True:
+def getDictInput():
         my_dict = {}
         name = input("Enter name: ")
         author = input("Enter author: ")
         my_dict[name] = author
         return my_dict
-    user_dict = get_dictionary_input()
-    libr = libr.union(user_dict.items())
-
-    print(libr)
-    isadd = input("Add another item?(y/n): ")
-    if isadd == "n":
-        add = False
-        add = True
-    elif isadd == "y":
-        print("Add an item")
-    else:
-        add = False
-    print(libr)
+        user_dict = getDictInput()
+        libr = libr.union(user_dict.items())
+        print(libr)
+        
 
 def search():#Function for checking if an item is in the library
     searItem = input("\nWhat is the EXACT name of the item you're looking for?: ")#Asks for the name of the item
@@ -68,7 +58,7 @@ def main():#Menu for the user to select what they would like to do
         
         action = input("\nWhat would you like to do?: ")
         if action == "1":
-            get_dictionary_input()
+            getDictInput()
 
         elif action == "2":
             search()
