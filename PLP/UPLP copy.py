@@ -1,18 +1,17 @@
-libr = set()#Library
-add = False
+libr = set()
+add = True
+print("Add items to your library")
 
 
-
-if add == True:
-    while add == True:
-        def getDictionaryInput():
-            my_dict = {}
-            name = input("Enter name: ")
-            author = input("Enter author: ")
-            my_dict[name] = author
-            return my_dict
-        user_dict = getDictionaryInput()
-        libr = libr.union(user_dict.items())
+while add == True:
+    def get_dictionary_input():
+        my_dict = {}
+        name = input("Enter name: ")
+        author = input("Enter author: ")
+        my_dict[name] = author
+        return my_dict
+    user_dict = get_dictionary_input()
+    libr = libr.union(user_dict.items())
     
     print(libr)
     isadd = input("Add another item?(y/n): ")
@@ -22,9 +21,7 @@ if add == True:
         print("Add an item")
     else:
         add = False
-    print(libr)
-    print("\nUpdated library:", libr)#Prints updated library
-
+print(libr)
 
 def search():#Function for checking if an item is in the library
     searItem = input("\nWhat is the EXACT name of the item you're looking for?: ")#Asks for the name of the item
