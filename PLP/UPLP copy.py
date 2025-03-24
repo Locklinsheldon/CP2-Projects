@@ -9,11 +9,10 @@ def getDictInput():
         name = input("Enter name: ")
         author = input("Enter author: ")
         my_dict[name] = author
-        return my_dict
         user_dict = getDictInput()
         libr = libr.union(user_dict.items())
         print(libr)
-        
+        return my_dict
 
 def search():#Function for checking if an item is in the library
     searItem = input("\nWhat is the EXACT name of the item you're looking for?: ")#Asks for the name of the item
