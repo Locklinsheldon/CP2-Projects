@@ -2,7 +2,6 @@ libr = set()
 add = True
 print("Add items to your library")
 
-
 while add == True:
     def get_dictionary_input():
         my_dict = {}
@@ -21,4 +20,5 @@ while add == True:
         print("Add an item")
     else:
         add = False
+
 print(libr)
