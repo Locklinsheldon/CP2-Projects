@@ -16,10 +16,7 @@ def addItem():
     libr.append(info)
 
     print(libr)
-
-def remove():
     
-
 def menu():
     ask = input("Wyt nummer?: ")
     if ask == "1":
@@ -27,3 +24,5 @@ def menu():
 
 while t == True:
     menu()
+
+#Is working :)
