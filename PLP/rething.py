@@ -18,7 +18,7 @@ def addItem():
     print(libr)
 
 def remove():
-    name = input("What is the name of your item")
+    
 
 def menu():
     ask = input("Wyt nummer?: ")
