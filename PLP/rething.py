@@ -17,10 +17,16 @@ def addItem():
 
     print(libr)
     
+def change():#Make change
+    del info
+    print(libr)
+
 def menu():
     ask = input("Wyt nummer?: ")
     if ask == "1":
         addItem()
+    if ask == "2":
+        change()
 
 while t == True:
     menu()
