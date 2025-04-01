@@ -16,13 +16,17 @@ def addItem():
     libr.append(info)
 
     print(libr)
-    
+
 def change():#Make change
-    del info
-    print(libr)
+    
 
 def menu():
-    ask = input("Wyt nummer?: ")
+    print("1. Add a new item to your library")
+    print("2. Change the details of an item in your library")
+    print("3. Remove an item from you library")
+    print("4. View library")
+    
+    ask = input("What would you like to do?(1-4): ")
     if ask == "1":
         addItem()
     if ask == "2":
@@ -30,5 +34,3 @@ def menu():
 
 while t == True:
     menu()
-
-#Is working :)
