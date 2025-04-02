@@ -16,6 +16,7 @@ def addItem():#Function for adding items to the library
 
 def remove():#Function for removing items from your library
     which = input("\nWhich item would you like to remove?(0-999): ")#Asks user what item they want removed
+    
     if which.isdigit() and 0 <= int(which) < len(libr):#Requirements for deletion
         libr.pop(int(which))#Deletes the item
         print("")#Makes it look pretty
@@ -25,6 +26,7 @@ def remove():#Function for removing items from your library
 
 def change():#Function to change an items details
     askIt = input("\nWhich item are you looking for?(0-999): ")#Asks the user which item they are wanting to update
+    
     if askIt.isdigit() and 0 <= int(askIt) < len(libr):#Requirements before updating
         item = libr[int(askIt)]#States that the item variable is equal to libr[(askIt)]
         print(item)#Prints the item
@@ -49,9 +51,12 @@ def menu():#Menu function for user to view options
     print("\n1. Add Item")#Possible options:
     print("2. Remove Item")
     print("3. Update Item")
-    print("4. View Library")
-    print("5. Quit")
+    print("4. View Simple Library")
+    print("5. View Detailed Library")
+    print("6. Quit")
+    
     ask = input("\nWhat would you like to do?: ")#Asks what the user what they want to do
+    
     if ask == "1":#Possible answers:
         addItem()
     elif ask == "2":
@@ -60,8 +65,10 @@ def menu():#Menu function for user to view options
         change()
     elif ask == "4":
         print("")#This also just makes it look pretty
-        print(libr)#Prints library
+        print(libr)#Prints detailed library
     elif ask == "5":
+        print("\nI'ma be so for real rn, I have no idea how to print a simple list, and it's already super late so like...")
+    elif ask == "6":
         print("\n!WARNING! All items in your library will be lost!")#Warning for user before they end the program
         con = input("\nQuit?(y/n): ")#Asks user yes or no
         if con == "y":
@@ -71,5 +78,6 @@ def menu():#Menu function for user to view options
             print("\nGood choice...")
     else:
         print("I dunno what that means...")#Error for user
+
 while t:#Makes the menu always run after a function finishes
     menu()#Calls the menu
