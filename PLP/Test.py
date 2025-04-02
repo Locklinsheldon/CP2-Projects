@@ -1,4 +1,4 @@
-print("Welcome to The Grand Reopening of The Personal Library Program!\n(Now with the ability to update items!!!)")#Informs user of the program
+print("\nWelcome to The Grand Reopening of The Personal Library Program!\n(Now with the ability to update items!!!)")#Informs user of the program
 
 libr = []#Library variable that stores the dictionaries
 t = True#Makes it so the menu continues running
@@ -51,11 +51,11 @@ def menu():#Menu function for user to view options
     print("\n1. Add Item")#Possible options:
     print("2. Remove Item")
     print("3. Update Item")
-    print("4. View Simple Library")
-    print("5. View Detailed Library")
+    print("4. View Detailed Library")
+    print("5. View Simple Library")
     print("6. Quit")
     
-    ask = input("\nWhat would you like to do?: ")#Asks what the user what they want to do
+    ask = input("\nWhat would you like to do?(1-6): ")#Asks what the user what they want to do
     
     if ask == "1":#Possible answers:
         addItem()
@@ -67,7 +67,7 @@ def menu():#Menu function for user to view options
         print("")#This also just makes it look pretty
         print(libr)#Prints detailed library
     elif ask == "5":
-        print("\nI'ma be so for real rn, I have no idea how to print a simple list, and it's already super late so like...")
+        print("\nI'ma be so for real rn, I have no idea how to print a simple library, and it's already super late so like...")
     elif ask == "6":
         print("\n!WARNING! All items in your library will be lost!")#Warning for user before they end the program
         con = input("\nQuit?(y/n): ")#Asks user yes or no
