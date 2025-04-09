@@ -1,47 +1,59 @@
 import csv
 
+print("\nWelcome to the Movie Recommender.")
+
 def thing():
-    with open('MR/movies.csv', 'r') as file:
+    with open('MR/movies.csv', mode='r') as file:
         reader = csv.reader(file)
-        next(reader)
         for row in reader:
             print(row)
-
 def genre():
+    print("\n1. Drama\n2. Comedy\n3. Sci-Fi\n4. Adventure\n5. Family\n6. Animation\n7. History\n8. Action\n9. Fantasy\n10. Biography\n11. Sport\n12. Musical\n13. Romance\n14. War\n15. Crime\n16. Mystery\n17. Thriller\n18. Music")
+
+    whatGen = input("\nWhat genre of movie would you like to see?(1-18): ")
+    
+    with open('MR/movies.csv', 'r') as file:
+        reader = csv.reader(file)
+    for row in reader:
+        print(f"Column 1: {row[0]}, Column 2: {row[1]}")
 
 def direct():
+    ()
 
 def length():
+    ()
 
 def actors():
+    ()
 
 def find():
     print("\n1. Genre\n2. Directors\n3. Length\n4. Actors")
     
-    askWhatnum1 = input("\nWhat is the first thing you would like to search by?(1-4): ")
-    if askWhatnum1 == "1":
-        askWhat1 = genre()
-    elif askWhatnum1 == "2":
-        askWhat1 = direct()
-    elif askWhatnum1 == "3":
-        askWhat1 = length()
-    elif askWhatnum1 == "4":
-        askWhat1 = actors()
+    askWhat1 = input("\nWhat is the FIRST thing you would like to search by?(1-4): ")
+    if askWhat1 == "1":
+        genre()
+    elif askWhat1 == "2":
+        direct()
+    elif askWhat1 == "3":
+        length()
+    elif askWhat1 == "4":
+        actors()
     else:
         print("\nSry, that's not an option :(")
    
-    askWhatnum2 = input("\nWhat is the second thing you would like to search by?(1-4)")
-    if askWhatnum2 == askWhatnum1:
-        print("\nYou can't choose the same thing to search by.")
-    elif askWhatnum2 == "1":
-        askWhat2 = genre()
-    elif askWhatnum2 == "2":
-        askWhat2 = direct()
-    elif askWhatnum2 == "3":
-        askWhat2 = length()
-    elif askWhatnum2 == "4":
-        askWhat2 = actors()
+    askWhat2 = input("\nWhat is the SECOND thing you would like to search by?(1-4)")
+    if askWhat2 == askWhat1:
+        print("\n<You can't choose the same thing to search by>")
+    elif askWhat2 == "1":
+        genre()
+    elif askWhat2 == "2":
+        direct()
+    elif askWhat2 == "3":
+        length()
+    elif askWhat2 == "4":
+        actors()
     else:
         print("\nSry, that's not an option :(")
-    
-    
+
+while True:
+    find()
