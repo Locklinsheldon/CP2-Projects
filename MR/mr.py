@@ -3,7 +3,7 @@ import csv
 print("\nWelcome to the Movie Recommender.")
 
 def thing():
-    with open('MR/movies.csv', mode='r') as file:
+    with open('MR/moviers.csv', mode='r') as file:
         reader = csv.reader(file)
         for row in reader:
             print(row)
@@ -12,7 +12,7 @@ def genre():
 
     whatGen = input("\nWhat genre of movie would you like to see?(1-18): ")
     
-    with open('MR/movies.csv', 'r') as file:
+    with open('MR/moviers.csv', 'r') as file:
         reader = csv.reader(file)
     for row in reader:
         print(f"Column 1: {row[0]}, Column 2: {row[1]}")
