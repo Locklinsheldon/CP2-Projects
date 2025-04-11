@@ -1,58 +1,15 @@
 import csv
 
-print("\nWelcome to the Movie Recommender.")
-
-def thing():
-    with open('MR/movies.csv', mode='r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            print(row)
-def genre():
-    print("\n1. Drama\n2. Comedy\n3. Sci-Fi\n4. Adventure\n5. Family\n6. Animation\n7. History\n8. Action\n9. Fantasy\n10. Biography\n11. Sport\n12. Musical\n13. Romance\n14. War\n15. Crime\n16. Mystery\n17. Thriller\n18. Music")
-
-    whatGen = input("\nWhat genre of movie would you like to see?(1-18): ")
-    
- 
-
-def direct():
-    ()
-
-def length():
-    ()
-
-def actors():
-    ()
-
-def find():
-    print("\n1. Genre\n2. Directors\n3. Length\n4. Actors")
-    
-    askWhat1 = input("\nWhat is the FIRST thing you would like to search by?(1-4): ")
-    if askWhat1 == "1":
-        genre()
-    elif askWhat1 == "2":
-        direct()
-    elif askWhat1 == "3":
-        length()
-    elif askWhat1 == "4":
-        actors()
-    else:
-        print("\nSry, that's not an option :(")
-   
-    askWhat2 = input("\nWhat is the SECOND thing you would like to search by?(1-4)")
-    if askWhat2 == askWhat1:
-        print("\n<You can't choose the same thing to search by>")
-    elif askWhat2 == "1":
-        genre()
-    elif askWhat2 == "2":
-        direct()
-    elif askWhat2 == "3":
-        length()
-    elif askWhat2 == "4":
-        actors()
-    else:
-        print("\nSry, that's not an option :(")
-
 def printSpecIt(file_path, row_index=None, column_index=None, column_name=None):
+    """
+    Prints specific items from a CSV file based on row index, column index, or column name.
+
+    Args:
+        file_path (str): The path to the CSV file.
+        row_index (int, optional): The index of the row to print. Defaults to None.
+        column_index (int, optional): The index of the column to print. Defaults to None.
+        column_name (str, optional): The name of the column to print. Defaults to None.
+    """
     try:
         with open(file_path, 'r') as file:
             csv_reader = csv.reader(file)
@@ -116,6 +73,3 @@ printSpecIt(file_path, row_index=2, column_name="Age")
 
 print("\nPrint column at index 1:")
 printSpecIt(file_path, column_index=1)
-
-while True:
-    find()
