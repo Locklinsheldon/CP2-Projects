@@ -1,121 +1,57 @@
-import csv
+import pandas as pd
 
-print("\nWelcome to the Movie Recommender.")
+# Step 1: Load the movie data
+df = pd.read_csv('MR/movies.csv')  # Adjust the path if necessary
 
-def thing():
-    with open('MR/movies.csv', mode='r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            print(row)
-def genre():
-    print("\n1. Drama\n2. Comedy\n3. Sci-Fi\n4. Adventure\n5. Family\n6. Animation\n7. History\n8. Action\n9. Fantasy\n10. Biography\n11. Sport\n12. Musical\n13. Romance\n14. War\n15. Crime\n16. Mystery\n17. Thriller\n18. Music")
+# Step 2: Combine the 'Genre', 'Director', and 'Notable Actors' into one text field for each movie
+df['combined'] = df['Genre'] + ' ' + df['Director'] + ' ' + df['Notable Actors']
 
-    whatGen = input("\nWhat genre of movie would you like to see?(1-18): ")
+# Step 3: Create a simple similarity function (based on matching words in the combined text)
+def calculate_similarity(movie1, movie2):
+    # Convert both movie strings to lowercase to avoid case differences
+    movie1 = movie1.lower()
+    movie2 = movie2.lower()
     
- 
-
-def direct():
-    ()
-
-def length():
-    ()
-
-def actors():
-    ()
-
-def find():
-    print("\n1. Genre\n2. Directors\n3. Length\n4. Actors")
+    # Split both movies' text into words
+    words1 = set(movie1.split())
+    words2 = set(movie2.split())
     
-    askWhat1 = input("\nWhat is the FIRST thing you would like to search by?(1-4): ")
-    if askWhat1 == "1":
-        genre()
-    elif askWhat1 == "2":
-        direct()
-    elif askWhat1 == "3":
-        length()
-    elif askWhat1 == "4":
-        actors()
-    else:
-        print("\nSry, that's not an option :(")
-   
-    askWhat2 = input("\nWhat is the SECOND thing you would like to search by?(1-4)")
-    if askWhat2 == askWhat1:
-        print("\n<You can't choose the same thing to search by>")
-    elif askWhat2 == "1":
-        genre()
-    elif askWhat2 == "2":
-        direct()
-    elif askWhat2 == "3":
-        length()
-    elif askWhat2 == "4":
-        actors()
-    else:
-        print("\nSry, that's not an option :(")
-
-def printSpecIt(file_path, row_index=None, column_index=None, column_name=None):
-    try:
-        with open(file_path, 'r') as file:
-            csv_reader = csv.reader(file)
-            header = next(csv_reader)
-            
-            if row_index is not None:
-                for i, row in enumerate(csv_reader):
-                    if i == row_index:
-                        if column_index is not None:
-                            print(row[column_index])
-                        elif column_name is not None:
-                            try:
-                                column_index = header.index(column_name)
-                                print(row[column_index])
-                            except ValueError:
-                                print(f"Column '{column_name}' not found.")
-                        else:
-                            print(row)
-                        return
-                print(f"Row index {row_index} not found.")
-
-            elif column_index is not None:
-                for row in csv_reader:
-                    print(row[column_index])
-            
-            elif column_name is not None:
-                try:
-                    column_index = header.index(column_name)
-                    for row in csv_reader:
-                        print(row[column_index])
-                except ValueError:
-                     print(f"Column '{column_name}' not found.")
-            
-            else:
-                 for row in csv_reader:
-                    print(row)
+    # Calculate the Jaccard similarity (ratio of common words to total unique words)
+    intersection = words1.intersection(words2)
+    union = words1.union(words2)
     
-    except FileNotFoundError:
-        print(f"File not found: {file_path}")
-    except IndexError:
-        print("Index out of range.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    if len(union) == 0:  # To avoid division by zero
+        return 0
+    
+    return len(intersection) / len(union)
 
-file_path = 'Test/demofile.csv'
+# Step 4: Create a function to recommend movies based on similarity
+def recommend_movie(movie_title):
+    # Get the movie's combined description
+    movie_idx = df[df['Title'] == movie_title].index[0]
+    movie_combined = df.loc[movie_idx, 'combined']
+    
+    # Calculate similarity scores between the chosen movie and all other movies
+    similarity_scores = []
+    
+    for idx, row in df.iterrows():
+        if idx != movie_idx:
+            similarity_score = calculate_similarity(movie_combined, row['combined'])
+            similarity_scores.append((row['Title'], similarity_score))
+    
+    # Sort the movies by similarity score (highest to lowest)
+    similarity_scores = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
+    
+    # Get the top 5 most similar movies
+    top_similar_movies = [movie for movie, score in similarity_scores[:5]]
+    
+    return top_similar_movies
 
-print("Print all data:")
-printSpecIt(file_path)
+# Step 5: Example usage
+movie_title = "Forrest Gump"  # Replace with any movie from your dataset
+recommended_movies = recommend_movie(movie_title)
 
-print("\nPrint row at index 1:")
-printSpecIt(file_path, row_index=1)
-
-print("\nPrint item at row index 0 and column index 2:")
-printSpecIt(file_path, row_index=0, column_index=2)
-
-print("\nPrint column with name 'Name':")
-printSpecIt(file_path, column_name="Name")
-
-print("\nPrint item at row index 2 and column name 'Age':")
-printSpecIt(file_path, row_index=2, column_name="Age")
-
-print("\nPrint column at index 1:")
-printSpecIt(file_path, column_index=1)
-
-while True:
-    find()
+# Display the recommended movies
+print(f"Movies similar to {movie_title}:\n")
+for movie in recommended_movies:
+    print(movie)

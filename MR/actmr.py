@@ -46,7 +46,7 @@ def actors():#Function for finding which actors the use wants
     print(f"\nSearching for movies with {act}...")
 
 def print_list():#Function for printing all of the movies
-    with open('MR/movies.csv', new_line='') as csv_file:#Opens, then closes the movies csv
+    with open('MR/movies.csv', newline='') as csv_file:#Opens, then closes the movies csv
         csv_reader = csv.reader(csv_file)
         for row in csv_reader:
             print(row)
