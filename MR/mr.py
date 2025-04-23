@@ -1,57 +1,104 @@
-import pandas as pd
+import csv
 
-# Step 1: Load the movie data
-df = pd.read_csv('MR/movies.csv')  # Adjust the path if necessary
+print("\nWelcome to the Movie Recommender")
 
-# Step 2: Combine the 'Genre', 'Director', and 'Notable Actors' into one text field for each movie
-df['combined'] = df['Genre'] + ' ' + df['Director'] + ' ' + df['Notable Actors']
+# Function to show all the movies
+def show_movies(path='MR/movies.csv'):
+    try:
+        with open(path, mode='r') as file:
+            reader = csv.DictReader(file)  # Read as dictionary to get column names
+            for row in reader:
+                print(f"{row['Title']} - {row['Director']} - {row['Genre']} - {row['Length (min)']} min")
+    except FileNotFoundError:
+        print("<Couldn't find movie>")
 
-# Step 3: Create a simple similarity function (based on matching words in the combined text)
-def calculate_similarity(movie1, movie2):
-    # Convert both movie strings to lowercase to avoid case differences
-    movie1 = movie1.lower()
-    movie2 = movie2.lower()
+# Function to let the user select a genre
+def genre():
+    genre_list = ["Drama", "Comedy", "Sci-Fi", "Adventure", "Family", "Animation", "History", "Action", 
+                  "Fantasy", "Biography", "Sport", "Musical", "Romance", "War", "Crime", "Mystery", "Thriller", "Music"]
+    print("\nAvailable Genres:")
+    for index, x in enumerate(genre_list, start=1):
+        print(f"{index}. {x}")
     
-    # Split both movies' text into words
-    words1 = set(movie1.split())
-    words2 = set(movie2.split())
-    
-    # Calculate the Jaccard similarity (ratio of common words to total unique words)
-    intersection = words1.intersection(words2)
-    union = words1.union(words2)
-    
-    if len(union) == 0:  # To avoid division by zero
-        return 0
-    
-    return len(intersection) / len(union)
+    while True:
+        try:
+            choice = int(input("\nWhat genre?(1-18): "))
+            if 1 <= choice <= 18:
+                print(f"\nGenre selected: {genre_list[choice - 1]}")
+                break
+            else:
+                print("<Input needs to be a number(1-18)>")
+        except ValueError:
+            print("<Input needs to be a number(1-18)>")
 
-# Step 4: Create a function to recommend movies based on similarity
-def recommend_movie(movie_title):
-    # Get the movie's combined description
-    movie_idx = df[df['Title'] == movie_title].index[0]
-    movie_combined = df.loc[movie_idx, 'combined']
-    
-    # Calculate similarity scores between the chosen movie and all other movies
-    similarity_scores = []
-    
-    for idx, row in df.iterrows():
-        if idx != movie_idx:
-            similarity_score = calculate_similarity(movie_combined, row['combined'])
-            similarity_scores.append((row['Title'], similarity_score))
-    
-    # Sort the movies by similarity score (highest to lowest)
-    similarity_scores = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
-    
-    # Get the top 5 most similar movies
-    top_similar_movies = [movie for movie, score in similarity_scores[:5]]
-    
-    return top_similar_movies
+# Function for selecting a director
+def direct():
+    dire = input("\nEnter the director's name: ")
+    print(f"\nSearching for movies directed by {dire}...")
 
-# Step 5: Example usage
-movie_title = "Forrest Gump"  # Replace with any movie from your dataset
-recommended_movies = recommend_movie(movie_title)
+# Function to get movie length range
+def length():
+    try:
+        min_length = int(input("\nEnter minimum movie length in minutes: "))
+        max_length = int(input("\nEnter maximum movie length in minutes: "))
+        print(f"\nSearching for movies between {min_length}-{max_length} minutes...")
+    except ValueError:
+        print("<Input needs to be a number>")
 
-# Display the recommended movies
-print(f"Movies similar to {movie_title}:\n")
-for movie in recommended_movies:
-    print(movie)
+# Function to search by actor's name
+def actors():
+    act = input("\nEnter an actor's name: ")
+    print(f"\nSearching for movies with {act}...")
+
+# Function to print the movie list in a user-friendly format
+def print_list():
+    with open('MR/movies.csv', newline='') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            print(f"{row['Title']} - {row['Director']} - {row['Genre']} - {row['Length (min)']} min")
+
+# Function to search for movies based on criteria
+def find():
+    print("\nSearch Options:")
+    print("1. Genre\n2. Directors\n3. Length\n4. Actors")
+    
+    avail_choices = {"1": genre, "2": direct, "3": length, "4": actors}
+    
+    while True:
+        ask_what1 = input("\nSelect the first search option(1-4): ")
+        if ask_what1 in avail_choices:
+            avail_choices[ask_what1]()
+            break
+        else:
+            print("<Input needs to be a number(1-4)>")
+
+    while True:
+        print("\nSearch Options:")
+        print("1. Genre\n2. Directors\n3. Length\n4. Actors")
+        ask_what2 = input("\nSelect the second search option(1-4): ")
+        if ask_what2 == ask_what1:
+            print("\n<You can't choose the same option twice>.")
+        elif ask_what2 in avail_choices:
+            avail_choices[ask_what2]()
+            break
+        else:
+            print("<Input needs to be a number(1-4)>")
+
+# Main menu function
+def menu():
+    print("\n1. Print All Movies\n2. Find A Movie\n3. End Program")
+    which = input("What would you like to do?(1-3): ")
+    if which == "1":
+        show_movies()
+    elif which == "2":
+        while True:
+            find()
+    elif which == "3":
+        print("G O O D B Y E")
+        exit()
+    else:
+        print("<Input needs to be a number(1-3)>")
+
+# Main loop to run the program
+while True:
+    menu()
