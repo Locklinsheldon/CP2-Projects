@@ -1,8 +1,20 @@
 import pandas as pd
+import csv
+
 print("Welcome to the Ultimate Battle Simulator")
 
+def thing():
+    who = input("Who would you like to add?: ")
+
+    new = ", " + who
+
+    with open('battle_sim/char.csv', newline='') as csvfile:
+        charreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        for row in charreader:
+            print(new.join(row))
+
 def tutorial():
-    print("\nTo start, the first thing you will need to do is create your character.")
+    print("\nTo start, the first thing you will need to do is create a character.")
     print("\nWhat would you like this character's name to be?")
     tutor_name = input("\nName: ")
     if tutor_name == "":
