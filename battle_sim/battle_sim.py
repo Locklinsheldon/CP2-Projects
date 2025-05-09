@@ -20,6 +20,7 @@ def tutorial():
     if tutor_name == "":
         tutor_name = "[No name]"
     print("Now that you have given your character a name, you must give it it's health, strength, defense, and speed atributes.")
+    print("You have 20 total points available.")
 
 def show_char():
     df = pd.read_csv('battle_sim/char.csv')
